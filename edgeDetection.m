@@ -25,3 +25,19 @@ end
 sobgradient = uint8(Edg);
 figure, imshow(sobgradient);
 title('Sobel Gradient');
+
+%Detection of edge using threshold 255
+
+edges = sobgradient;
+for i=1:size(Gray,1)-2
+    for j=1:size(Gray,2)-2
+        if sobgradient(i,j) < 255
+            edges(i,j) = 0;
+        else
+            edges(i,j)= 1;
+        end
+    end
+end
+edges = logical(edges);
+figure,imshow(edges);
+title('Detected Edges');
